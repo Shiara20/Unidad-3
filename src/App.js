@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./firebase"; // Importamos la configuración de Firebase
 import { collection, addDoc, getDocs, updateDoc, doc } from "firebase/firestore";
+import Header from "./components/Header";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 import "./App.css";
 
 function App() {
+
   const [nombre, setNombre] = useState("");
   const [edad, setEdad] = useState("");
   const [receta, setReceta] = useState("");
@@ -71,8 +75,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Gestión de Pacientes</h1>
-
+      <Header />
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        {/* Add additional routes as needed */}
+      </Routes>
+      
       {/* Formulario para agregar paciente */}
       <div>
         <input
@@ -122,5 +130,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
